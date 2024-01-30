@@ -9,6 +9,10 @@ from bannervendedor import BannerVendedor
 from pathlib import Path
 from myfirebase import MyFireBase
 from datetime import datetime
+import certifi
+import os
+
+os.environ["SSL_CERT_FILE"] = certifi.where()
 
 GUI = Builder.load_file('main.kv')
 class MainApp(App):
