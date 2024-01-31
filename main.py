@@ -6,11 +6,10 @@ import requests
 from functools import partial
 from bannervenda import BannerVenda
 from bannervendedor import BannerVendedor
-from pathlib import Path
 from myfirebase import MyFireBase
 from datetime import datetime
-import certifi
 import os
+import certifi
 
 os.environ["SSL_CERT_FILE"] = certifi.where()
 
@@ -30,7 +29,7 @@ class MainApp(App):
         self.carregar_scroll_views_venda()
 
     def carregar_perfils_usuario(self):
-        for foto in Path('icones/fotos_perfil').iterdir():
+        for foto in os.listdir('icones/fotos_perfil').iterdir():
             perfil = ImageButton(source=f'{foto}',on_release=partial(self.mudar_foto_perfil,foto))
             lista_fotoperfils = self.root.ids['fotoperfilpage'].ids['lista_fotosperfils'].add_widget(perfil)
         
@@ -138,7 +137,7 @@ class MainApp(App):
         label_data = pagina_adicionarvendas.ids['label_data']
         label_data.text = f'Data: {datetime.today().strftime("%d/%m/%Y")}'
 
-        arquivo = Path('icones/fotos_clientes')
+        arquivo = os.lis('icones/fotos_clientes')
         arquivo2 = Path('icones/fotos_produtos')
         pagina_adicionarvendas = self.root.ids['adicionarvendaspage']
         lista_clientes = pagina_adicionarvendas.ids['lista_clientes']
